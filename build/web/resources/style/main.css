@@ -1,0 +1,371 @@
+body{
+    background:lightgrey;
+     
+}
+
+.face{
+    border-radius: 20px;
+    width:960px;
+    margin:0px auto;
+    background:white;
+    
+}
+.head{
+    height:85px;
+    background:url("#{resource['images:head.jpg']}");
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+   
+}
+.head img{
+    margin-left:15px;
+    margin-top:5px;
+    display: inline-block
+}
+.head span{
+    color:white;
+   font-size:30px;
+   font-style: italic;
+   font-weight:bold;
+   display:inline-block;
+   padding-bottom:50px;
+   vertical-align:middle;
+    
+}
+.search{
+    
+    margin:10px;
+    margin-left:70px;
+}
+.content{
+    height:600px;
+    
+    
+}
+.first-column{
+    float:left;
+    border-right:1px solid lightgrey;
+    width:200px;
+    padding-left:15px;
+}
+.second-column{
+    float:left;
+    width:740px;
+}
+
+.second-column h3{
+    text-align: center;
+    
+}
+tr{
+    padding-left: 0px;
+    list-style: none;
+}
+a.genries {
+    display:block;
+    font-size:20px;
+    margin:10px;
+    color:black;
+    text-decoration: none;
+    
+}
+
+a.genries:hover{
+    cursor:pointer;
+    color:blue;
+    
+}
+
+input{
+    display:inline-block;
+    margin:10px;
+    border-radius:5px;
+    padding:7px;
+    background:#F8F8FF;
+    border:1px solid #C9C0BB;
+    box-shadow:1px 2px black;
+    font-size:15px;
+}
+.enter{
+    font-weight:bold;
+    font-size:20px;
+    color:white;
+    padding:5px 20px;
+    background:#6699CC;
+}
+.enter:hover{
+    background:#C0C0C0;
+    cursor:pointer;
+    box-shadow: none;
+}
+input.pole{
+    color:lightgrey;
+}
+input.pole:focus{
+    color:black;
+}
+select{
+    display:inline-block;
+    width:100px;
+    height:30px;
+    padding:5px;
+    background:#F8F8FF;
+    border:1px solid #C9C0BB;
+    box-shadow:1px 2px black;
+}
+.s1{
+    position:relative;
+    top:20px;
+    left:8px;
+}
+.footer{
+     height:50px;
+    background:url("#{resource['images:head.jpg']}");
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    clear:both;
+}
+.footer span{
+   display:block;
+   padding-left:300px;
+   padding-top:20px;
+   color:lightgrey;
+   
+}
+.book-list{
+    display: inline-block;
+    font-size: 15px;
+    vertical-align: top;
+    margin:10px;
+    margin-left:5px;
+    margin-right:0px;
+    margin-bottom: 15px;
+    border-collapse: collapse;
+    padding:20px;
+
+}
+.book-list:hover{
+   background:#F8F8FF;
+}
+.book-list th{
+    text-align: left;
+   
+}
+.nazvanie{
+    display: block;
+    font-weight:bold;
+    font-size:18px;
+    margin-bottom:7px;
+    color: #6699CC;
+    text-align: center;
+    white-space: nowrap;
+}
+.book-list td{
+    text-align:left;
+}
+
+.letters{
+    margin-left: 230px;
+   word-spacing: 3px;
+}
+.letters a{
+    display: inline-block;
+    margin:4px;
+    
+    text-decoration: none;
+    font-weight:bold;
+    font-size:18px;
+    color:black;
+    
+}
+.letters a:hover{
+   
+    color:blue;
+    
+}
+.hello{
+    position:absolute;
+    right:250px;
+    top:20px;
+   
+}
+.hello>span{
+  
+    font-size: 16px;
+    color:white;
+    font-weight:bold;
+    font-style:normal;
+    line-height: 20px;
+  
+}
+
+.hello a{
+    text-decoration: underline;
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+    
+}
+.name{
+    font-size:20px;
+    color:gold;
+    font-style: normal;
+}
+a.read{
+    display:inline-block;
+    width:50px;
+    font-weight:bold;
+    font-size:15px;
+    text-decoration: none;
+    text-align: center;
+    color:white;
+    padding:5px;
+    background:#6699CC;
+    box-shadow:1px 2px black;
+}
+a.read:hover{
+    background:#C0C0C0;
+    cursor:pointer;
+    box-shadow:none;
+}
+.curGenre{
+    color:blue !important;
+    font-weight: bold;
+}
+.curLetter{
+    color:red !important;
+}
+.found-book{
+    margin-left: 40px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.pages{
+    display:block;
+    padding:4px;
+    background:#F8F8FF;
+    text-align: center;
+    margin-bottom: 8px;
+    margin-top: 5px;
+}
+.pages a{
+    text-decoration: none;
+    margin-left: 5px;
+    display: inline-block;
+    padding:5px 10px 5px 10px;
+    background:#6699CC;
+    font-weight: bold;
+    color:white;
+    box-shadow:2px 2px gray;
+   
+}
+.pages a:hover{
+    background: red;
+    box-shadow: none;
+}
+.pages a.curPage{
+    background: red;
+    box-shadow: none;
+}
+.book-link{
+    color:white;
+}
+.iii{
+   color:black;
+}
+.book-info{
+    width:650px;
+    margin:0px auto;
+    
+    padding:4px;
+}
+
+td p{
+    padding:10px;
+}
+td p:nth-child(2n){
+    padding:10px;
+    background:#F8F8FF;
+    
+}
+.shadow{
+    background:lightgrey;
+    width:270px;
+    height:380px;
+}
+.shadow img{
+    position: relative;
+    left:20px;
+    top:20px;
+   
+}
+.description{
+    margin:10px 10px 10px 80px;
+}
+.description span{
+    font-style: italic;
+    font-weight: bold;
+    
+}
+
+.locale-icon{
+    opacity:0.5;
+    margin-left:5px;
+}
+.locale-icon:hover{
+    opacity: 1.0;
+}
+a.save{
+    background:#f85d5d;
+    margin-left: 5px;
+    width:65px;
+}
+a.save:hover{
+   background:#C0C0C0;
+}
+
+p input{
+     display:inline;
+    margin:0px;
+    padding:5px;
+    background:white;
+    border:1px solid #C9C0BB;
+    font-size:14px;
+    border-radius: 0px;
+    box-shadow: none;
+}
+.book-edit .edit-buttons a{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    font-weight: bold;
+    color:black;
+    font-size: 15px;
+}
+.book-edit .edit-buttons a:hover{
+    color:red;
+}
+.book-edit a img{
+
+    width:24px;
+    height:24px;
+}
+div.edit-buttons{
+    margin-left:80px;
+    margin-top: 20px;
+}
+
+.genre-selector{
+    width:150px;
+}
+#loading{
+    background: white;
+    position:absolute;
+    opacity: 0.9;
+    
+    width:740px;
+ 
+    text-align: center;
+    padding-top:80px;
+    display:none;
+}

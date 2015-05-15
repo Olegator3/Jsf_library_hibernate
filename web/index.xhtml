@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{localeChanger.currentLocale}"/>
+    <h:head>
+        <title>#{lang.title}</title>
+        <h:outputStylesheet library="style" name="index.css"/>
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    </h:head>
+    <h:body>
+        
+         <div class="content info">
+            <hr/>
+            <h2>#{lang.welcome_enter}</h2>
+                <p>
+                    #{lang.info_enter}
+                </p>
+                <hr/>
+                
+  
+        <div class="content auth">
+             
+            <h:form id="login_form">
+                <h:graphicImage styleClass="lib" library="images" name="library.png"/>
+                 
+                <span>#{lang.login}</span>
+                <h:inputText  size="20" id="login" value="#{user.name}" required="true" requiredMessage="#{lang.login_requied}">
+                    <f:validator validatorId="validators/LoginValidator"/>
+                    <f:ajax event="keyup" render=":error"/>
+                </h:inputText><br/>
+                <span>#{lang.pass}</span>
+                <h:inputSecret id="pass" size="20" value="#{user.password}"/><br/>
+                <h:commandButton action="#{user.login()}" styleClass="enter" value="#{lang.enter}" /><br/>
+                
+            </h:form>
+             
+            <h:message id="error" for="login" styleClass="error"/>
+            <h:message id="loginError" for="login_form" styleClass="error"/>
+            
+            </div>
+                
+                <div class="footer">
+                        <h:form styleClass="locale-change">
+                            <h:outputText styleClass="p" value="#{lang.footer}"/>
+                     <h:commandLink  action="#{localeChanger.changeLocale('ru')}" >
+                         <h:graphicImage styleClass="locale-icon" library="images" name="ru.png"/>
+                     </h:commandLink>
+                      <h:commandLink action="#{localeChanger.changeLocale('en')}" >
+                         <h:graphicImage styleClass="locale-icon" library="images" name="eng.png" width="30px" height="20px"/>
+                     </h:commandLink>
+                </h:form> 
+                </div>
+                
+         </div>
+    </h:body>
+</html>
+

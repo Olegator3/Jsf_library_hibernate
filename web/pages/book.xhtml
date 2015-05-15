@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Main page</title>
+        <h:outputStylesheet library="style" name="main.css"/>
+      
+    </h:head>
+    <h:body>
+        
+        <ui:composition template="/templates/library_templates.xhtml">
+            
+            
+            <ui:define name="second-column">
+               
+                <h:form id="count">
+                <p  class="found-book">
+                    <h:outputText value="#{lang.foundBooks} #{bookListController.countOfBooks}"/>
+                </p>
+                </h:form>
+                
+                <h:panelGroup id="pages1" layout="block"> 
+                    <ui:insert name ="pages">
+                    <ui:include src="/templates/pages.xhtml"/>
+                </ui:insert>
+                </h:panelGroup>
+                <div id="loading">
+                    <h:graphicImage library="images" name="ajax-loader.gif"/>
+                </div>
+                  <h:form id="booklist">
+                  
+                <ui:repeat value="#{bookListController.currentBooks}" var="book">
+                    
+                    <h:link outcome="info" styleClass="book-link" > 
+                        <span class="iii">
+                      <h:dataTable value="#{book}" var="b" styleClass="book-list" title="#{book.name}">
+                        
+                        <h:column>
+                            <h1 class="nazvanie">#{book.name}</h1>
+                            <h:graphicImage value="/ShowImage?id=#{b.id}" alt="Картинка" width="190" height="250"/><br/>
+                            <span><b>ISBN: </b> #{b.isbn}</span><br/>
+                            <span><b>#{lang.author}</b> #{b.author.fio}</span><br/>
+                            <span><b>#{lang.publisher}</b> #{b.publisher.name}</span><br/>
+                            <span><b>#{lang.page_countss} </b>#{b.pageCount}</span><br/>
+                            <span><b>#{lang.date_publish}</b> #{b.publishYear}</span><br/>
+                             <h:outputLink value="#{request.contextPath}/PdfContent" styleClass="read" target="_blank">
+                                #{lang.read}
+                                 <f:param name="id_book" value="#{book.id}"/>
+                                 <f:param name="save" value="false"/>
+                             </h:outputLink>
+                             <h:outputLink value="#{request.contextPath}/PdfContent" styleClass="read save" target="_blank">
+                                #{lang.download}
+                                 <f:param name="id_book" value="#{book.id}"/>
+                                 <f:param name="save" value="true"/>
+                             </h:outputLink>
+                        </h:column>
+                </h:dataTable>   
+                            </span>
+                        <f:param name="id_book" value="#{book.id}"/>
+                        
+                    </h:link>
+                </ui:repeat>
+                      
+                      
+                </h:form>
+               <h:panelGroup id="pages2" layout="block"> 
+                    <ui:insert name ="pages">
+                    <ui:include src="/templates/pages.xhtml"/>
+                </ui:insert>
+                </h:panelGroup>
+                    
+                
+            </ui:define>
+            
+        </ui:composition>
+        
+    </h:body>
+</html>
+

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Main page</title>
+        <h:outputStylesheet library="style" name="main.css"/>
+    </h:head>
+    <h:body>
+        
+        <ui:composition>
+            <div class="head">
+                <h:graphicImage library="images" name="icon.png" width="8%"/>
+               
+                <span>#{lang.info_library}
+                
+                </span>
+                <div class="hello">
+                    <span>#{lang.hello_library}<br/>
+                        #{user.name}<br/>
+                        <h:form>
+                            <h:commandLink action="#{user.exit()}" value="#{lang.exit}"/>
+                        </h:form></span>
+                     </div>
+            </div>
+       
+        <h:form styleClass="search">
+            <span class="s1"><h:graphicImage library="images" name="search.png"/></span> 
+            <h:inputText id="searchValue" styleClass="pole"  size="60" value="#{bookListController.searchString}"/>
+            <h:commandButton action="#{bookListController.fillBooksBySearch(false)}" styleClass="enter"  value="#{lang.search_bttn}"> 
+                <c:if test="#{!bookListController.redirect}">
+                <f:ajax execute="@form" onevent="showProgress" event="click" render="@form :count :booklist  :pages1 :pages2 :letters-line :genre-list" listener="#{bookListController.fillBooksBySearch(false)}"/>
+                </c:if>
+            </h:commandButton>
+            <h:selectOneMenu  value="#{bookListController.searchType}">
+                <f:selectItems  value="#{searchTypeController.searchParams}"/>
+            </h:selectOneMenu>
+        </h:form>
+            
+        </ui:composition>
+        
+    </h:body>
+</html>
+

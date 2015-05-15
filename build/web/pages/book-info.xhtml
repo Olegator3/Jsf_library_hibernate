@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{localeChanger.currentLocale}"/>
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="style" name="main.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/library_templates.xhtml">
+            
+            <ui:define name="second-column">
+                <h:form>
+                    <h:commandButton action="books" value="Назад" />
+                </h:form>
+                
+                <h:form  styleClass="book-edit">
+   <h:panelGroup layout="block" id="admin_tools" rendered="#{request.isUserInRole('admin')}" styleClass="edit-buttons">
+       <h:commandLink action="#{editController.swtchEditMode()}" rendered="#{!editController.editmode}">
+          <h:graphicImage library="images" name="book_edit.png"/>
+          #{lang.edit}
+          <f:ajax  event="click" execute="@form" render="@form" listener="#{editController.swtchEditMode()}"/>
+       </h:commandLink>
+                        
+      <h:commandLink   rendered="#{editController.editmode}">
+           <h:graphicImage library="images" name="okay.png"/>
+           #{lang.save}
+           <f:ajax event="click" execute="@form" render="@form" listener="#{editController.updateBook}"/>
+      </h:commandLink>    
+                        
+      <h:commandLink   immediate="true" action="#{editController.swtchEditMode()}" rendered="#{editController.editmode}">
+           <h:graphicImage library="images" name="cancel.png"/>
+           #{lang.cancel}
+           <f:ajax  event="click" execute="@form" render="@form" listener="#{editController.swtchEditMode()}"/>
+      </h:commandLink>
+                    </h:panelGroup>
+                    
+                    <h:dataTable value="#{editController.concreteBook}" var="book" styleClass="book-info">
+                    <h:column>
+                        <div class="shadow">
+                            <h:graphicImage value="/ShowImage?id=#{book.id}" alt="Картинка" width="270" height="380"/></div>
+                    </h:column>
+                    <h:column class="row">
+                         <p><b>ISBN: </b>
+                             <h:outputText value="#{book.isbn}" rendered="#{!editController.editmode}"/>
+                             <h:inputText value="#{book.isbn}" rendered="#{editController.editmode}"/>
+                         </p>
+                         <p><b>#{lang.book_name} </b> 
+                             <h:outputText value="#{book.name}" rendered="#{!editController.editmode}"/>
+                             <h:inputText value="#{book.name}" rendered="#{editController.editmode}"/>
+                         </p>
+                         <p><b>#{lang.genre} </b>
+                             <h:outputText value="#{book.genre.name}" rendered="#{!editController.editmode}"/>
+
+                             <h:selectOneMenu  styleClass="genre-selector" value="#{book.genre}" rendered="#{editController.editmode}">
+                                 <f:selectItem itemValue="#{book.genre}" itemLabel="#{book.genre.name}"/>
+                                 <f:selectItems  value="#{genreController.genreMap}"/>
+                             </h:selectOneMenu>
+                         </p>
+                        <p><b>#{lang.author} </b> 
+                            <h:outputText value="#{book.author.fio}" rendered="#{!editController.editmode}"/>
+                            <h:inputText value="#{book.author.fio}" rendered="#{editController.editmode}"/>
+                        </p>
+                        <p><b>#{lang.publisher} </b> 
+                            <h:outputText value="#{book.publisher.name}" rendered="#{!editController.editmode}"/>
+                            <h:inputText value="#{book.publisher.name}" rendered="#{editController.editmode}"/>
+                        </p>
+                        <p><b>#{lang.page_countss} </b> 
+                            <h:outputText value="#{book.pageCount}" rendered="#{!editController.editmode}"/>
+                            <h:inputText value="#{book.pageCount}" rendered="#{editController.editmode}"/>
+                        </p>
+                        <p><b>#{lang.date_publish} </b> 
+                            <h:outputText value="#{book.publishYear}" rendered="#{!editController.editmode}"/>
+                            <h:inputText value="#{book.publishYear}" rendered="#{editController.editmode}"/>
+                        </p>
+                    </h:column>
+                   
+                </h:dataTable>
+                
+                    <ui:repeat value="#{editController.concreteBook}" var="b">
+                    <div class="description">
+                        <span>#{lang.discription}</span><br/>
+                        <p><h:outputText value="#{b.description}" rendered="#{!editController.editmode}"/></p>
+                        <h:inputTextarea value="#{b.description}" cols="50" rows="20" rendered="#{editController.editmode}"/>
+                        
+                        <h:outputLink value="#{request.contextPath}/PdfContent" styleClass="read" target="_blank" rendered="#{!editController.editmode}">
+                                #{lang.read}
+                                 <f:param name="id_book" value="#{b.id}"/>
+                                 <f:param name="save" value="false"/>
+                             </h:outputLink>
+                             <h:outputLink value="#{request.contextPath}/PdfContent" styleClass="read save" target="_blank" rendered="#{!editController.editmode}">
+                                #{lang.download}
+                                 <f:param name="id_book" value="#{b.id}"/>
+                                 <f:param name="save" value="true"/>
+                             </h:outputLink>
+                    </div>
+                     
+                </ui:repeat>
+                    </h:form>
+            </ui:define>
+            
+            
+        </ui:composition>
+    </h:body>
+</html>
+

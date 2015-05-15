@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="style" name="main.css"/>
+        
+    </h:head>
+    <h:body>
+        
+        <ui:composition>
+            <h:form id="genre-list" styleClass="first-column" >
+                <h4 style="margin-bottom: 20px; margin-left: 10px;">#{lang.genries}</h4>
+                <h:commandLink action="#{bookListController.fillBooksAll(false)}"  styleClass="genries" value="Все книги">
+                    <f:param name="show" value="all"/>
+                    <c:if  test="#{!bookListController.redirect}">
+                    <f:ajax  onevent="showProgress" event="click" render=":count :booklist  :pages1 :pages2 :letters-line :genre-list" listener="#{bookListController.fillBooksAll(false)}"/> 
+                    </c:if>
+                </h:commandLink>
+            <ui:repeat value="#{genreController.list}" var="g">
+                
+                <h:commandLink action="#{bookListController.fillBookGenre(false)}" value="#{g.name}" styleClass="#{g.id == bookListController.selectedGenre ? 'genries curGenre' : 'genries'}">  
+                    <f:param name="id_genre" value="#{g.id}"/>
+                    <c:if test="#{!bookListController.redirect}">
+                    <f:ajax   onevent="showProgress" event="click" render=":count :booklist :bookInfo :pages1 :pages2 :letters-line :genre-list" listener="#{bookListController.fillBookGenre(false)}"/>
+                    </c:if>
+                </h:commandLink>
+            
+            </ui:repeat>
+            </h:form>
+        </ui:composition>
+        
+        
+    </h:body>
+</html>
+

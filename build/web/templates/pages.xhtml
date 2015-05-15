@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="style" name="main.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            
+            <h:form  styleClass="pages" rendered="#{bookListController.countOfBooks > 6}">
+                  #{lang.pages} 
+                <ui:repeat value="#{bookListController.pages}" var="p">
+                    <h:commandLink value="#{p}" styleClass="#{bookListController.selectedPage == p-1 ?'curPage':''}">
+                        <f:param name="page" value="#{p-1}"/>
+                        <f:ajax onevent="showProgress" event="click" render=":booklist :letters-line :pages1 :pages2" listener="#{bookListController.selectPage}"/>
+                    </h:commandLink>
+                    
+            </ui:repeat>
+                <h:commandButton rendered="#{request.isUserInRole('admin')}"  style="position: relative;left:200px;" value="Добавить книгу"/>
+                  </h:form>
+           
+                        
+
+        </ui:composition>
+    </h:body>
+</html>
+
